@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Title.cs" />
     <Compile Include="Assets\Scripts\UI\AudioManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Jacks-and-Beanstalks/Jacks and Beanstalks/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
