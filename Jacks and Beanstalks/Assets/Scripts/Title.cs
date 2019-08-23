@@ -13,8 +13,12 @@ public class Title : MonoBehaviour
 
     bool isOn = true;
 
+    public AudioClip bgmClip;
+
     void Start()
     {
+        AudioManager.BGMStart(bgmClip);
+
         on = titleImaga.GetComponent<SpriteRenderer>().sprite;
 
         off = Resources.Load<Sprite>("Images/Title_OFF");
