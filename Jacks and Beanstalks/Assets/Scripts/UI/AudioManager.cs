@@ -4,32 +4,83 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    private static AudioSource _bgmPlayer;
+    private static AudioSource _BGMPlayer
+    {
+        get
+        {
+            if (!_bgmPlayer)
+            {
+                AudioSource[] list = FindObjectsOfType<AudioSource>();
+                foreach(AudioSource instance in list)
+                {
+                    if (instance.name == "BGM Player")
+                    {
+                        _bgmPlayer = instance;
+                        break;
+                    }
+                }
+                if (!_bgmPlayer)
+                {
+                    _bgmPlayer = new GameObject().AddComponent<AudioSource>();
+                    _bgmPlayer.name = "BGM Player";
+                }
+            }
+            return _bgmPlayer;
+        }
+    }
+
     /*
     사용법
-    AudioManager.AudioPlay(음원 이름)으로 사용가능합니다.
+    AudioManager.AudioPlay(클립 이름)으로 사용가능합니다.
     static 함수이므로 AudioManager를 Scene 내부에 배치할 필요는 없습니다.
-    사용하실 음원은 Resources에 넣어주시고, _soundName에 음원의 이름을 넣어 사용해주세요.
+    사용할 클립을 매개변수로 넣어서 사용할 수 있어요.
     */
-    public static void AudioPlay(string _soundName, bool isLoop = false)
+    public static AudioSource AudioPlay(AudioClip clip, bool isLoop = false)
     {
         AudioSource _audio = new GameObject().AddComponent<AudioSource>();
-        _audio.gameObject.name = "Sound Effect Player";
-        _audio.clip = Resources.Load("Sound/" + _soundName) as AudioClip;
+        _audio.name = "Sound Effect Player";
+        _audio.clip = clip;
         _audio.loop = isLoop;
         _audio.Play();
         GameObject.Destroy(_audio.gameObject, _audio.clip.length);
+
+        return _audio;
     }
 
-    /* 임시 함수 */
+    public static AudioSource BGMStart(AudioClip bgmClip, bool isLoop = true)
+    {
+        //BGMStop();
+        _BGMPlayer.clip = bgmClip;
+        _BGMPlayer.loop = isLoop;
+        _BGMPlayer.Play();
+
+        return _BGMPlayer;
+    }
+
+    public static void BGMStop()
+    {
+       _BGMPlayer.Stop();
+    }
+
+    /* 사용 예시 및 임시 함수 */
+    public AudioClip beepP1;
+    public AudioClip beepP2;
+    public AudioClip bgmClip;
+
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            AudioPlay("Boom_C_02_8-Bit_11025Hz 1");
+            AudioPlay(beepP1);
         }
-        else if(Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            AudioPlay("Blip_C_10");
+            AudioPlay(beepP2);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            BGMStart(bgmClip);
         }
     }
 }

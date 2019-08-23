@@ -232,6 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bef0df0341af24aafd019a6eed7d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beepP1: {fileID: 8300000, guid: 1936b2db0eb13bd4fb20b87d6b1caf42, type: 3}
+  beepP2: {fileID: 8300000, guid: 05cdbb495be152849882d31fbeefe307, type: 3}
+  bgmClip: {fileID: 8300000, guid: bf4e26ea5c373a44c86e87053dae2287, type: 3}
 --- !u!4 &497689869
 Transform:
   m_ObjectHideFlags: 0
