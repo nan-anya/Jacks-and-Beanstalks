@@ -9,6 +9,8 @@ public class RPlayerInput : MonoBehaviour
     public InputManager inputmanager = new InputManager();
     private float timer;
 
+    public AudioClip beep;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,8 @@ public class RPlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))//왼쪽물주기
         {
+            AudioManager.AudioPlay(beep);
+
             timer += Time.deltaTime;
             inputmanager.PlusLeftCount();
             Jack_left.GetComponent<SpriteRenderer>().enabled = true;
@@ -29,12 +33,18 @@ public class RPlayerInput : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.P))//오른쪽물주기
         {
+            AudioManager.AudioPlay(beep);
+
             inputmanager.PlusRightCount();
             Jack_right.GetComponent<SpriteRenderer>().enabled = true;
         }
         else if (Input.GetKeyDown(KeyCode.O))//성장시키기
         {
+            AudioManager.AudioPlay(beep);
+
             inputmanager.PlusGrowth();
+            Jack_left.GetComponent<SpriteRenderer>().enabled = true;
+            Jack_right.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         if (timer > 0.3f)
@@ -60,9 +70,15 @@ public class RPlayerInput : MonoBehaviour
             Jack_right.GetComponent<SpriteRenderer>().enabled = false;
         }
 
-
+        /*
         Smile_sun_on.GetComponent<SpriteRenderer>().enabled = inputmanager.Smile_Sun;
+        Debug.Log(inputmanager.Smile_Sun);
         Sad_sun_on.GetComponent<SpriteRenderer>().enabled = inputmanager.Sad_Sun;
         Rain_on.GetComponent<SpriteRenderer>().enabled = inputmanager.Rain;
+        */
+
+        Smile_sun_on.GetComponent<SpriteRenderer>().enabled = inputmanager.smile_sun;
+        Sad_sun_on.GetComponent<SpriteRenderer>().enabled = inputmanager.sad_sun;
+        Rain_on.GetComponent<SpriteRenderer>().enabled = inputmanager.rain;
     }
 }

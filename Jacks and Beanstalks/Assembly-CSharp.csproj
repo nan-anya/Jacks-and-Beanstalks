@@ -62,8 +62,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Input\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Input\LPlayerInput.cs" />
+    <Compile Include="Assets\Scripts\Input\RPlayerInput.cs" />
     <Compile Include="Assets\Scripts\Title.cs" />
     <Compile Include="Assets\Scripts\UI\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\UI\FadeController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Jacks-and-Beanstalks/Jacks and Beanstalks/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
